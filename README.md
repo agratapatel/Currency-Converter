@@ -8,4 +8,4 @@ It does what it's told, and gives you the latest conversions on one tap. Made wi
 
 [agratapatel.github.io/currency-converter](https://www.agratapatel.github.io/currency-converter)
 
-![Preview of application](/.src/Currency-Converter-Screenshot.png)
+![Preview of application](src/Currency Converter Screenshot.png)
