@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
+import "./index.css";
 //import { Button } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
 import CurrencyRow from "./CurrencyRow";
+//import './logo.svg';
+//import './logo512.png';
 
 const BASE_URL = "https://api.exchangeratesapi.io/latest";
 
@@ -17,10 +20,10 @@ function App() {
   let toAmount, fromAmount
   if (amountInFromCurrency) {
     fromAmount = amount
-    toAmount = amount * exchangeRate
+    toAmount = parseFloat(amount * exchangeRate).toFixed(2);
   } else {
     toAmount = amount
-    fromAmount = amount /  exchangeRate
+    fromAmount = parseFloat(amount / exchangeRate).toFixed(2);
   }
 
   useEffect(() => {
@@ -54,21 +57,43 @@ function App() {
   }
 
   return (
-    <div className="container">
-      <h1>Currency Converter</h1>
-      <CurrencyRow
-        currencyOptions={currencyOptions}
-        selectedCurrency={fromCurrency}
-        onChangeCurrency={e => setFromCurrency(e.target.value)} onChangeAmount={handleFromAmountChange}
-        amount = {fromAmount}
-      />
-      <div>=</div>
-      <CurrencyRow
-        currencyOptions={currencyOptions}
-        selectedCurrency={toCurrency}
-        onChangeCurrency={e => setToCurrency(e.target.value)} onChangeAmount={handleToAmountChange} 
-        amount = {toAmount}
-      />
+    <div class="bg-gray-100 h-screen">
+      <div class="bg-indigo-500 w-full p-1" />
+      <div class="max-w-lg mx-auto">
+        <div class="flex justify-center pt-44 text-4xl font-medium">
+          Currency Converter
+        </div>
+        <div class="justify-center py-12">
+          <div class="flex justify-center p-3">
+            <CurrencyRow
+              currencyOptions={currencyOptions}
+              selectedCurrency={fromCurrency}
+              onChangeCurrency={(e) => setFromCurrency(e.target.value)}
+              onChangeAmount={handleFromAmountChange}
+              amount={fromAmount}
+            />
+          </div>
+
+          <div class="flex justify-center p-3">
+            <CurrencyRow
+              currencyOptions={currencyOptions}
+              selectedCurrency={toCurrency}
+              onChangeCurrency={(e) => setToCurrency(e.target.value)}
+              onChangeAmount={handleToAmountChange}
+              amount={toAmount}
+            />
+          </div>
+        </div>
+      </div>
+      <div class="fixed -bottom-0 bg-indigo-500 w-full p-2 text-center text-white font-mono text-sm">
+        Made with 👻 by Agrata Patel |&nbsp;
+        <a
+          href="https://github.com/agratapatel/Currency-Converter"
+          class="underline"
+        >
+          Github Source Code
+        </a>
+      </div>
     </div>
   );
 }
